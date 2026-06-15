@@ -2,10 +2,10 @@
 
 > AI-Governed Autonomous Distributed State Runtime
 
-## Project Status: Day 1 - Initial Setup
+## Project Status: Day 2 Complete ✅
 
 **Current Phase:** Phase 1 - Problem Definition and Literature Review  
-**Day:** 1 of 365  
+**Day:** 2 of 365  
 **Started:** June 15, 2026
 
 ## Overview
@@ -16,50 +16,173 @@ ESA is a research prototype for a self-organizing distributed runtime where:
 - Developers express intent instead of low-level commands
 - Security and policy enforcement are built-in from the start
 
-## Architecture (In Progress)
+## Architecture
 
-The system will consist of 6 layers:
-1. **Active Entity Runtime** - Executable state entities with WASM sandbox
-2. **Distributed State Fabric** - Raft-based replication and partitioning
-3. **AI Governance Layer** - SLM-powered orchestration
-4. **Deterministic Safety Layer** - Policy enforcement and action gateway
-5. **Intent Engine** - High-level developer interface
-6. **Observability Layer** - Metrics, tracing, and audit logs
+The system consists of 6 layers:
+
+```
+┌─────────────────────────────────────────┐
+│   Intent Engine (DSL → Policy)          │
+├─────────────────────────────────────────┤
+│   SLM Governance (Constitutional AI)    │
+├─────────────────────────────────────────┤
+│   Safety Layer (Policy Enforcement)     │
+├─────────────────────────────────────────┤
+│   Executable State Entities (WASM)      │
+├─────────────────────────────────────────┤
+│   Distributed Runtime (Raft + NATS)     │
+├─────────────────────────────────────────┤
+│   Storage Layer                          │
+└─────────────────────────────────────────┘
+```
+
+## Project Structure
+
+```
+src/
+├── governance/       # SLM orchestration and constitutional AI
+│   ├── slm.rs
+│   ├── constitution.rs
+│   └── workload.rs
+├── safety/          # Deterministic safety and policy engine
+│   ├── policy.rs
+│   ├── gateway.rs
+│   └── audit.rs
+├── runtime/         # Distributed runtime core
+│   ├── messaging.rs    # NATS pub/sub
+│   ├── consensus.rs    # Raft implementation
+│   ├── replication.rs
+│   └── membership.rs
+├── entity/          # Executable state entities
+│   ├── schema.rs
+│   ├── lifecycle.rs
+│   └── executor.rs     # WASM runtime
+├── intent/          # Intent DSL and compiler
+│   ├── dsl.rs
+│   ├── parser.rs
+│   └── compiler.rs
+├── storage/         # Persistent storage layer
+│   ├── engine.rs
+│   └── index.rs
+├── network/         # Network primitives
+│   ├── transport.rs
+│   └── protocol.rs
+└── monitoring/      # Observability
+    ├── metrics.rs
+    └── health.rs
+```
 
 ## Technology Stack
 
-- **Language:** Rust (1.96.0)
+- **Language:** Rust 2021 edition (1.96.0)
 - **Async Runtime:** Tokio
-- **Messaging:** NATS
-- **Consensus:** Raft
-- **Storage:** RocksDB
-- **WASM Runtime:** Wasmtime
+- **Messaging:** NATS (async-nats)
+- **Consensus:** Raft (planned)
+- **Storage:** RocksDB (planned)
+- **WASM Runtime:** Wasmtime (planned)
 - **SLM:** TinyLlama/Phi/Qwen (to be selected)
-- **Observability:** OpenTelemetry + Prometheus + Grafana
+- **Serialization:** Serde
+- **Logging:** Tracing + tracing-subscriber
+- **Orchestration:** Kubernetes (local: kind)
+- **Observability:** OpenTelemetry + Prometheus + Grafana (planned)
 
 ## Current Progress
 
-### ✅ Completed (Day 1)
+### ✅ Completed (Days 1-2)
+
+**Day 1:**
 - [x] Rust toolchain installed (v1.96.0)
 - [x] Cargo tools installed (cargo-watch, cargo-edit, cargo-audit)
-- [x] Git repository initialized
+- [x] Git repository initialized and connected to GitHub
 - [x] Basic project structure created
 - [x] .gitignore configured
 
-### 🔄 In Progress
-- [ ] Docker and Kubernetes setup
-- [ ] Documentation structure
-- [ ] Literature review
+**Day 2:**
+- [x] kubectl installed (v1.36.2)
+- [x] kind installed (v0.32.0)
+- [x] Local Kubernetes cluster created (esa-dev)
+- [x] NATS server running in Docker (ports 4222, 8222)
+- [x] Complete project structure with 8 core modules
+- [x] Cargo.toml configured with async dependencies
+- [x] lib.rs with module organization
+- [x] main.rs with async runtime and tracing
+- [x] Project compiles successfully (`cargo check` passes)
 
-### 📅 Next Steps (Days 2-7)
-- Complete container infrastructure setup
-- Begin distributed systems study (CAP, PACELC, Raft)
-- Study storage systems (LSM trees, MVCC)
-- Set up documentation framework
+### � Next Steps (Days 3-7)
+- [ ] Study distributed systems (CAP theorem, PACELC, Raft, CRDTs)
+- [ ] Research storage systems (LSM trees, MVCC, RocksDB)
+- [ ] Document findings from distributed systems study
+- [ ] Complete Week 1 literature review
+
+## Getting Started
+
+### Prerequisites
+- Rust 1.96.0 or later
+- Docker Desktop
+- kubectl 1.36.2 or later
+- kind 0.32.0 or later
+
+### Quick Start
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/sujithputta02/Esa_db.git
+   cd esa-runtime
+   ```
+
+2. **Start local infrastructure**
+   ```bash
+   # Start Kubernetes cluster
+   kind create cluster --name esa-dev
+   
+   # Start NATS server
+   docker run -d --name nats-main -p 4222:4222 -p 8222:8222 nats:latest
+   ```
+
+3. **Build and run**
+   ```bash
+   # Build the project
+   cargo build
+   
+   # Run the runtime
+   cargo run
+   
+   # Run tests
+   cargo test
+   ```
+
+### Development Tools
+
+```bash
+# Install development tools (if not already installed)
+cargo install cargo-watch cargo-edit cargo-audit
+
+# Auto-rebuild on changes
+cargo watch -x check -x test
+
+# Check for security vulnerabilities
+cargo audit
+```
+
+## Verify Setup
+
+Check that all infrastructure is running:
+
+```bash
+# Check Kubernetes cluster
+kubectl cluster-info --context kind-esa-dev
+
+# Check NATS
+docker ps | grep nats
+
+# Check project builds
+cargo check
+```
 
 ## Project Timeline
 
 - **Phase 1:** Problem Definition (Month 1 - Days 1-30)
+  - Week 1: Foundation & Setup ← **Current**
 - **Phase 2:** SLM Governance Core (Months 2-3 - Days 31-90)
 - **Phase 3:** Safety Layer (Month 4 - Days 91-120)
 - **Phase 4:** Distributed Runtime (Months 5-6 - Days 121-180)
@@ -77,52 +200,28 @@ This project aims to answer:
 3. Can constitutional guardrails reduce harmful orchestration actions?
 4. How much can token cost be reduced using optimization techniques?
 
-## Getting Started
-
-### Prerequisites
-- Rust 1.75+ (currently using 1.96.0)
-- Docker Desktop
-- Kubernetes (kind or minikube)
-- NATS server
-
-### Development Setup
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd esa-runtime
-
-# Build the project
-cargo build
-
-# Run tests
-cargo test
-
-# Watch mode for development
-cargo watch -x check -x test
-```
-
 ## Documentation
 
-- [Day-wise Implementation Plan](../ESA_DAYWISE_IMPLEMENTATION_PLAN.md)
-- [Week-by-Week Tasks](../WEEK_BY_WEEK_DETAILED_TASKS.md)
-- [Milestone Tracker](../MILESTONE_TRACKER.md)
-
-(More documentation will be added as the project progresses)
+- [Day-wise Implementation Plan](../ESA_DAYWISE_IMPLEMENTATION_PLAN.md) - Complete 365-day breakdown
+- [Week-by-Week Tasks](../WEEK_BY_WEEK_DETAILED_TASKS.md) - Detailed weekly task lists
+- [Project Structure](../PROJECT_STRUCTURE.md) - Repository organization
+- [Milestone Tracker](../MILESTONE_TRACKER.md) - Progress tracking
 
 ## Contributing
 
-This is a research project. Contributions, suggestions, and discussions are welcome once the core architecture is established.
+This is a research project. For questions or collaboration inquiries, please open an issue on GitHub.
 
 ## License
 
-To be determined
+MIT License
 
 ## Contact
 
-Project maintained as part of final year research project.
+- **GitHub:** [@sujithputta02](https://github.com/sujithputta02)
+- **Repository:** [Esa_db](https://github.com/sujithputta02/Esa_db)
 
 ---
 
-**Last Updated:** Day 1 (June 15, 2026)  
-**Next Milestone:** Complete development environment setup (Day 2)
+**Last Updated:** Day 2 (June 15, 2026)  
+**Next Milestone:** Distributed systems study (Days 3-5)  
+**Status:** ✅ Environment setup complete, ready for research phase
