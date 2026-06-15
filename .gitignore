@@ -1,0 +1,46 @@
+# Rust
+/target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+
+# Build outputs
+/dist/
+/build/
+
+# Test coverage
+/coverage/
+*.profraw
+
+# Benchmarks
+/benchmarks/results/
+
+# Models
+/models/*.bin
+/models/*.gguf
+!models/model-configs/
+
+# Documentation
+/target/doc/
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS
+Thumbs.db
