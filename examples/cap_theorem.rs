@@ -1,9 +1,6 @@
 // CAP Theorem Example - The Magic Notebook
 // This shows how we choose Consistency + Partition Tolerance for ESA
 
-use std::thread;
-use std::time::Duration;
-
 /// A notebook that follows CAP theorem rules
 /// ESA chooses CP (Consistency + Partition tolerance)
 struct Notebook {
@@ -30,7 +27,7 @@ impl Notebook {
         println!("\n✍️  {} wants to write: '{}'", self.name, text);
 
         // Check: Can we talk to other notebooks to stay consistent?
-        if !self.can_communication() {
+        if !self.can_communicate() {
             println!("❌ {}: Can't communicate! Waiting to ensure consistency...", self.name);
             println!("   (This is the tradeoff: We wait instead of giving wrong data)");
             return Err("Network partition - waiting for consistency".to_string());
