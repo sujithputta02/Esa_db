@@ -2,10 +2,10 @@
 
 > AI-Governed Autonomous Distributed State Runtime
 
-## Project Status: Day 3 Complete ✅
+## Project Status: Day 4 Complete ✅
 
 **Current Phase:** Phase 1 - Problem Definition and Literature Review  
-**Day:** 3 of 365  
+**Day:** 4 of 365  
 **Started:** June 15, 2026
 
 ## Overview
@@ -121,8 +121,23 @@ src/
   - `examples/consistent_hashing.rs` - Data distribution demo
 - [x] All examples compile and run successfully
 
-### 🔄 Next Steps (Days 4-7)
-- [ ] Continue distributed systems deep dive (Raft details, partitioning)
+**Day 4:**
+- [x] Deep dive into Raft consensus algorithm details
+- [x] Studied Raft roles (Leader, Follower, Candidate)
+- [x] Learned log replication workflow and commit process
+- [x] Understood heartbeat mechanism and failure detection
+- [x] Studied all 5 Raft safety guarantees
+- [x] Researched data partitioning strategies (Range, Hash, Consistent Hashing)
+- [x] Learned rebalancing when adding/removing servers
+- [x] Created detailed documentation (`docs/day4_raft_and_partitioning.md`)
+- [x] Built 3 working example programs:
+  - `examples/raft_log_replication.rs` - Leader-follower log replication
+  - `examples/partitioning_strategies.rs` - Compare partitioning methods
+  - `examples/rebalancing_demo.rs` - Data movement when servers change
+- [x] All examples compile and run successfully
+
+### 🔄 Next Steps (Days 5-7)
+- [ ] Continue distributed systems deep dive (advanced scenarios)
 - [ ] Research storage systems (LSM trees, MVCC, RocksDB)
 - [ ] Document findings from storage systems study
 - [ ] Complete Week 1 literature review
@@ -179,8 +194,9 @@ cargo audit
 
 ### Running Examples
 
-Day 3 includes educational examples demonstrating distributed systems concepts:
+Day 3 and Day 4 include educational examples demonstrating distributed systems concepts:
 
+**Day 3 Examples:**
 ```bash
 # CAP Theorem - Shows ESA's CP (Consistency + Partition Tolerance) choice
 cargo run --example cap_theorem
@@ -193,6 +209,18 @@ cargo run --example crdt_counter
 
 # Consistent Hashing - Shows smart data distribution across servers
 cargo run --example consistent_hashing
+```
+
+**Day 4 Examples:**
+```bash
+# Raft Log Replication - Leader writes, followers copy, commit with majority
+cargo run --example raft_log_replication
+
+# Partitioning Strategies - Compare Range, Hash, and Consistent Hashing
+cargo run --example partitioning_strategies
+
+# Rebalancing Demo - Shows data movement when servers are added/removed
+cargo run --example rebalancing_demo
 ```
 
 Each example includes:
@@ -243,7 +271,10 @@ This project aims to answer:
 - [Weekly Tasks](../WEEK_BY_WEEK_DETAILED_TASKS.md) - Detailed weekly task lists
 - [Project Structure](../PROJECT_STRUCTURE.md) - Repository organization
 - [Milestone Tracker](../MILESTONE_TRACKER.md) - Progress tracking
+
+**Learning Documentation:**
 - [Day 3: Distributed Systems](docs/day3_distributed_systems.md) - Kid-friendly guide to CAP, Raft, CRDTs, and Consistent Hashing
+- [Day 4: Raft & Partitioning](docs/day4_raft_and_partitioning.md) - Deep dive into Raft consensus, partitioning strategies, and rebalancing
 
 ## Contributing
 
@@ -260,6 +291,6 @@ MIT License
 
 ---
 
-**Last Updated:** Day 3 (June 15, 2026)  
-**Next Milestone:** Continue distributed systems study (Days 4-5)  
-**Status:** ✅ Week 1 progressing well, foundational concepts documented
+**Last Updated:** Day 4 (June 16, 2026)  
+**Next Milestone:** Continue distributed systems study (Day 5) and storage systems research (Days 6-7)  
+**Status:** ✅ Week 1 progressing well, foundational distributed systems concepts mastered
