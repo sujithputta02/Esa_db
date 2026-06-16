@@ -2,10 +2,10 @@
 
 > AI-Governed Autonomous Distributed State Runtime
 
-## Project Status: Day 2 Complete ✅
+## Project Status: Day 3 Complete ✅
 
 **Current Phase:** Phase 1 - Problem Definition and Literature Review  
-**Day:** 2 of 365  
+**Day:** 3 of 365  
 **Started:** June 15, 2026
 
 ## Overview
@@ -108,10 +108,23 @@ src/
 - [x] main.rs with async runtime and tracing
 - [x] Project compiles successfully (`cargo check` passes)
 
-### � Next Steps (Days 3-7)
-- [ ] Study distributed systems (CAP theorem, PACELC, Raft, CRDTs)
+**Day 3:**
+- [x] Studied CAP theorem and PACELC
+- [x] Researched Raft consensus algorithm
+- [x] Learned CRDTs (Conflict-free Replicated Data Types)
+- [x] Studied consistent hashing and partitioning strategies
+- [x] Created comprehensive documentation (`docs/day3_distributed_systems.md`)
+- [x] Built 4 working example programs:
+  - `examples/cap_theorem.rs` - CAP theorem demonstration
+  - `examples/raft_election.rs` - Leader election simulation
+  - `examples/crdt_counter.rs` - CRDT G-Counter and PN-Counter
+  - `examples/consistent_hashing.rs` - Data distribution demo
+- [x] All examples compile and run successfully
+
+### 🔄 Next Steps (Days 4-7)
+- [ ] Continue distributed systems deep dive (Raft details, partitioning)
 - [ ] Research storage systems (LSM trees, MVCC, RocksDB)
-- [ ] Document findings from distributed systems study
+- [ ] Document findings from storage systems study
 - [ ] Complete Week 1 literature review
 
 ## Getting Started
@@ -164,6 +177,30 @@ cargo watch -x check -x test
 cargo audit
 ```
 
+### Running Examples
+
+Day 3 includes educational examples demonstrating distributed systems concepts:
+
+```bash
+# CAP Theorem - Shows ESA's CP (Consistency + Partition Tolerance) choice
+cargo run --example cap_theorem
+
+# Raft Consensus - Simulates leader election with 5 servers
+cargo run --example raft_election
+
+# CRDTs - Demonstrates conflict-free counters (G-Counter and PN-Counter)
+cargo run --example crdt_counter
+
+# Consistent Hashing - Shows smart data distribution across servers
+cargo run --example consistent_hashing
+```
+
+Each example includes:
+- Kid-friendly explanations with real-world analogies
+- Print statements showing what's happening step-by-step
+- Simple variable names and clear comments
+- Direct relevance to ESA's architecture
+
 ## Verify Setup
 
 Check that all infrastructure is running:
@@ -202,10 +239,11 @@ This project aims to answer:
 
 ## Documentation
 
-- [Day-wise Implementation Plan](../ESA_DAYWISE_IMPLEMENTATION_PLAN.md) - Complete 365-day breakdown
-- [Week-by-Week Tasks](../WEEK_BY_WEEK_DETAILED_TASKS.md) - Detailed weekly task lists
+- [Implementation Plan](../ESA_DAYWISE_IMPLEMENTATION_PLAN.md) - Complete 365-day breakdown
+- [Weekly Tasks](../WEEK_BY_WEEK_DETAILED_TASKS.md) - Detailed weekly task lists
 - [Project Structure](../PROJECT_STRUCTURE.md) - Repository organization
 - [Milestone Tracker](../MILESTONE_TRACKER.md) - Progress tracking
+- [Day 3: Distributed Systems](docs/day3_distributed_systems.md) - Kid-friendly guide to CAP, Raft, CRDTs, and Consistent Hashing
 
 ## Contributing
 
@@ -222,6 +260,6 @@ MIT License
 
 ---
 
-**Last Updated:** Day 2 (June 15, 2026)  
-**Next Milestone:** Distributed systems study (Days 3-5)  
-**Status:** ✅ Environment setup complete, ready for research phase
+**Last Updated:** Day 3 (June 15, 2026)  
+**Next Milestone:** Continue distributed systems study (Days 4-5)  
+**Status:** ✅ Week 1 progressing well, foundational concepts documented
