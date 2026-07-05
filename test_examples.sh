@@ -16,6 +16,7 @@ examples=(
     "raft_log_replication"
     "rebalancing_demo"
     "storage_basics"
+    # "rocksdb_poc"  # Skipped: RocksDB compilation is slow
 )
 
 # Track results
